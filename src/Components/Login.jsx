@@ -48,7 +48,7 @@ function Login() {
 
         <div>
           <p>
-            Don't have an Account! <a href="/SignUp">Click Here</a>
+            Don't have an Account? <a href="/SignUp">Sign Up</a>
           </p>
         </div>
       </form>
@@ -56,5 +56,6 @@ function Login() {
     </div>
   );
 }
+
 
 export default Login;
