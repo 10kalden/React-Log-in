@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./login.css";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -7,6 +8,10 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // if (!username || !password) {
+    //   setMessage("Enter email and password correctly!");
+    //   return;
+    // }
     const response = await fetch("#", {
       method: "POST",
       headers: {
@@ -18,44 +23,51 @@ function Login() {
     if (response.status === 200) {
       setMessage("Login successful");
     } else {
-      setMessage("Login failed");
+      // setMessage("Login failed");
+      setMessage("Enter email and password correctly!");
     }
   };
 
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
+      <div className="container">
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-        <div>
-          <a href="/ForgotPassword">Forgot Password?</a>
-        </div>
-        <button type="submit">Login</button>
+          <div className="input-container">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <p className="message">{message}</p>
 
-        <div>
-          <p>
-            Don't have an Account? <a href="/SignUp">Sign Up</a>
-          </p>
-        </div>
-      </form>
-      <p>{message}</p>
+          <div className="forgot">
+            <a href="/ForgotPassword">Forgot Password?</a>
+          </div>
+          <div className="button">
+            <button type="submit">Login</button>
+          </div>
+
+          <div className="signup">
+            <p>
+              Don't have an Account? <a href="/SignUp">Sign Up</a>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
-
 
 export default Login;
